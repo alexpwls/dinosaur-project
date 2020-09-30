@@ -145,14 +145,14 @@ function checkDiet(results, humanObject) {
 */
 function gridItemDinoHTML(result, randomNumber) {
     let fact = ""
-    if (randomNumber == 0) {
+    if (result.species == "Pigeon") {
+        fact = "All birds are living dinosaurs."
+    } else if (randomNumber == 0) {
         fact = result.fact0
     } else if (randomNumber == 1) {
         fact = result.fact1
     } else if (randomNumber == 2) {
         fact = result.fact2
-    } else if (result.species == "Pigeon") {
-        fact = "All birds are living dinosaurs."
     } else {
         fact = result.fact3
     }
@@ -223,17 +223,7 @@ document.getElementById("btn").addEventListener("click", function() {
     /**
     * Gather all data in single array
     */
-    const results = [
-        triceratops,
-        tyrannosausRex,
-        anklyosaurus,
-        brachiosaurus,
-        humanObject,
-        stegosaurus,
-        elasmosaurus,
-        pteranodon,
-        pigeon
-    ]
+    const results = dinos.Dinos.slice(0,4).concat([humanObject]).concat(dinos.Dinos.slice(4,8))
     /**
     * Compare method nr 1
     */
@@ -251,16 +241,3 @@ document.getElementById("btn").addEventListener("click", function() {
     */
     setupTiles(results);
 });
-
-/**
-* Create dino objects
-*/
-
-let triceratops = new Dino(dinos.Dinos[0].species, dinos.Dinos[0].weight, dinos.Dinos[0].height, dinos.Dinos[0].diet, dinos.Dinos[0].where, dinos.Dinos[0].when, dinos.Dinos[0].fact0, dinos.Dinos[0].img);
-let tyrannosausRex = new Dino(dinos.Dinos[1].species, dinos.Dinos[1].weight, dinos.Dinos[1].height, dinos.Dinos[1].diet, dinos.Dinos[1].where, dinos.Dinos[1].when, dinos.Dinos[1].fact0, dinos.Dinos[1].img);
-let anklyosaurus = new Dino(dinos.Dinos[2].species, dinos.Dinos[2].weight, dinos.Dinos[2].height, dinos.Dinos[2].diet, dinos.Dinos[2].where, dinos.Dinos[2].when, dinos.Dinos[2].fact0, dinos.Dinos[2].img);
-let brachiosaurus = new Dino(dinos.Dinos[3].species, dinos.Dinos[3].weight, dinos.Dinos[3].height, dinos.Dinos[3].diet, dinos.Dinos[3].where, dinos.Dinos[3].when, dinos.Dinos[3].fact0, dinos.Dinos[3].img);
-let stegosaurus = new Dino(dinos.Dinos[4].species, dinos.Dinos[4].weight, dinos.Dinos[4].height, dinos.Dinos[4].diet, dinos.Dinos[4].where, dinos.Dinos[4].when, dinos.Dinos[4].fact0, dinos.Dinos[4].img);
-let elasmosaurus = new Dino(dinos.Dinos[5].species, dinos.Dinos[5].weight, dinos.Dinos[5].height, dinos.Dinos[5].diet, dinos.Dinos[5].where, dinos.Dinos[5].when, dinos.Dinos[5].fact0, dinos.Dinos[5].img);
-let pteranodon = new Dino(dinos.Dinos[6].species, dinos.Dinos[6].weight, dinos.Dinos[6].height, dinos.Dinos[6].diet, dinos.Dinos[6].where, dinos.Dinos[6].when, dinos.Dinos[6].fact0, dinos.Dinos[6].img);
-let pigeon = new Dino(dinos.Dinos[7].species, dinos.Dinos[7].weight, dinos.Dinos[7].height, dinos.Dinos[7].diet, dinos.Dinos[7].where, dinos.Dinos[7].when, dinos.Dinos[7].fact0, dinos.Dinos[7].img);
