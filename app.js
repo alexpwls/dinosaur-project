@@ -101,20 +101,14 @@ function Dino(species, weight, height, diet, where, when, fact0, img) {
 }
 
 /**
-* Creation of human object
-*/
-const human = new Object();
-
-
-/**
 * Create Dino Compare Method 1: check if weight is different
 */
-function checkWeight(results) {
+function checkWeight(results, humanObject) {
     for (result of results) {
-        if (result.weight > human.weight) {
-            result.fact1 = result.species + " is heavier than " + human.species
+        if (result.weight > humanObject.weight) {
+            result.fact1 = result.species + " is heavier than " + humanObject.species
         } else {
-            result.fact1 = result.species + " is not heavier than " + human.species
+            result.fact1 = result.species + " is not heavier than " + humanObject.species
         }
     }
 }
@@ -122,13 +116,13 @@ function checkWeight(results) {
 /**
 * Create Dino Compare Method 2: check if height is different
 */
-function checkHeight(results) {
+function checkHeight(results, humanObject) {
     for (result of results) {
-        let humanInches = Number(human.feet) * 12 + Number(human.inches)
+        let humanInches = Number(humanObject.feet) * 12 + Number(humanObject.inches)
         if (result.height > humanInches) {
-            result.fact2 = result.species + " is bigger than " + human.species
+            result.fact2 = result.species + " is bigger than " + humanObject.species
         } else {
-            result.fact2 = result.species + " is not bigger than " + human.species
+            result.fact2 = result.species + " is not bigger than " + humanObject.species
         }
     }
 }
@@ -136,12 +130,12 @@ function checkHeight(results) {
 /**
 * Create Dino Compare Method 3: check if Diet is similar
 */
-function checkDiet(results) {
+function checkDiet(results, humanObject) {
     for (result of results) {
-        if (result.diet == human.diet) {
-            result.fact3 = result.species + " shares the same diet with " + human.species
+        if (result.diet == humanObject.diet) {
+            result.fact3 = result.species + " shares the same diet with " + humanObject.species
         } else {
-            result.fact3 = result.species + " does not share the same diet with " + human.species
+            result.fact3 = result.species + " does not share the same diet with " + humanObject.species
         }
     }
 }
@@ -212,18 +206,16 @@ document.getElementById("btn").addEventListener("click", function() {
     /**
     * Use IIFE to get human data from form
     */
-    let humanData = (function() {
-        human.img = "human.png"
-        human.species = document.getElementById("name").value;
-        human.feet = document.getElementById("feet").value;
-        human.inches = document.getElementById("inches").value;
-        human.weight = document.getElementById("weight").value;
-        human.diet = document.getElementById("diet").value;
-    })();
-    /**
-    * Get human data and store in object
-    */
-    humanData;
+    let humanObject = {};
+    (function(human) {
+            human.img = "human.png"
+            human.species = document.getElementById('name').value;
+            human.feet = document.getElementById('feet').value;
+            human.inches = document.getElementById('inches').value;
+            human.weight = document.getElementById('weight').value;
+            human.diet = document.getElementById('diet').value;
+    })(humanObject);
+
     /**
     * Remove the form from the UI
     */
@@ -236,7 +228,7 @@ document.getElementById("btn").addEventListener("click", function() {
         tyrannosausRex,
         anklyosaurus,
         brachiosaurus,
-        human,
+        humanObject,
         stegosaurus,
         elasmosaurus,
         pteranodon,
@@ -245,15 +237,15 @@ document.getElementById("btn").addEventListener("click", function() {
     /**
     * Compare method nr 1
     */
-    checkWeight(results);
+    checkWeight(results, humanObject);
     /**
     * Compare method nr 2
     */
-    checkHeight(results);
+    checkHeight(results, humanObject);
     /**
     * Compare method nr 3
     */
-    checkDiet(results);
+    checkDiet(results, humanObject);
     /**
     * Create the grid with the results
     */
