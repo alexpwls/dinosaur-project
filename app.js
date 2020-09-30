@@ -143,7 +143,6 @@ function setupTiles(results) {
 
 // Add data to tiles and return HTML
 function gridItemDinoHTML(result, randomNumber) {
-    console.log(result)
     let fact = ""
     if (randomNumber == 0) {
         fact = result.fact0
@@ -161,7 +160,6 @@ function gridItemDinoHTML(result, randomNumber) {
                         <p>${fact}</p>
                         <img src="images/${result.img}">
                     </div>`;
-    console.log(fact)
     return html;
 }
 
