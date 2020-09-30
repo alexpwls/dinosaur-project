@@ -150,15 +150,15 @@ function checkDiet(results) {
 * Generate Tiles for each Dino in Array and insert in DOM
 */
 function setupTiles(results) {
-    const grid = document.getElementById('grid');
+    const grid = document.getElementById("grid");
     let count = 0;
     for (result of results) {
         if (count == 4) {
-            grid.insertAdjacentHTML('beforeend', gridItemHumanHTML(result));
+            grid.insertAdjacentHTML("beforeend", gridItemHumanHTML(result));
             count = count + 1;
         } else {
             let randomNumber = Math.floor(Math.random() * 4);
-            grid.insertAdjacentHTML('beforeend', gridItemDinoHTML(result, randomNumber));
+            grid.insertAdjacentHTML("beforeend", gridItemDinoHTML(result, randomNumber));
             count = count + 1;
         }
     }
@@ -200,24 +200,24 @@ function gridItemHumanHTML(result) {
 * Remove form from screen
 */
 function removeForm() {
-    const form = document.getElementById('dino-compare');
+    const form = document.getElementById("dino-compare");
     form.style.display = "none";
 }
 
 /**
 * On button click, prepare and display infographic
 */
-document.getElementById('btn').addEventListener('click', function() {
+document.getElementById("btn").addEventListener("click", function() {
     /**
     * Use IIFE to get human data from form
     */
     let humanData = (function() {
         human.img = "human.png"
-        human.species = document.getElementById('name').value;
-        human.feet = document.getElementById('feet').value;
-        human.inches = document.getElementById('inches').value;
-        human.weight = document.getElementById('weight').value;
-        human.diet = document.getElementById('diet').value;
+        human.species = document.getElementById("name").value;
+        human.feet = document.getElementById("feet").value;
+        human.inches = document.getElementById("inches").value;
+        human.weight = document.getElementById("weight").value;
+        human.diet = document.getElementById("diet").value;
     })();
     /**
     * Get human data and store in object
