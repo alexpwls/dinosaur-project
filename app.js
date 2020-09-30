@@ -1,4 +1,6 @@
-// Create Dino Objects
+/**
+* Creation of dino objects
+*/
 const dinos = {
     "Dinos": [{
         "species": "Triceratops",
@@ -75,7 +77,18 @@ const dinos = {
     }]
 }
 
-// Create Dino Constructor
+/**
+* @description Represents a dinosaur
+* @constructor
+* @param {string} species - The species of the dino
+* @param {string} weight - The weight of the dino
+* @param {string} height - The height of the dino
+* @param {string} diet - The diet oof the dino
+* @param {string} where - Where the dino lived
+* @param {string} when - When the dino lived
+* @param {string} fact0 - Fact about the dino
+* @param {string} img - Image from the dino
+*/
 function Dino(species, weight, height, diet, where, when, fact0, img) {
     this.species = species;
     this.weight = weight;
@@ -87,11 +100,15 @@ function Dino(species, weight, height, diet, where, when, fact0, img) {
     this.img = img;
 }
 
-// Create Human Object
+/**
+* Creation of human object
+*/
 const human = new Object();
 
 
-// Create Dino Compare Method 1: check if weight is different
+/**
+* Create Dino Compare Method 1: check if weight is different
+*/
 function checkWeight(results) {
     for (result of results) {
         if (result.weight > human.weight) {
@@ -102,7 +119,9 @@ function checkWeight(results) {
     }
 }
 
-// Create Dino Compare Method 2: check if height is different
+/**
+* Create Dino Compare Method 2: check if height is different
+*/
 function checkHeight(results) {
     for (result of results) {
         let humanInches = Number(human.feet) * 12 + Number(human.inches)
@@ -114,7 +133,9 @@ function checkHeight(results) {
     }
 }
 
-// Create Dino Compare Method 3: check if Diet is similar
+/**
+* Create Dino Compare Method 3: check if Diet is similar
+*/
 function checkDiet(results) {
     for (result of results) {
         if (result.diet == human.diet) {
@@ -125,7 +146,9 @@ function checkDiet(results) {
     }
 }
 
-// Generate Tiles for each Dino in Array and insert in DOM
+/**
+* Generate Tiles for each Dino in Array and insert in DOM
+*/
 function setupTiles(results) {
     const grid = document.getElementById('grid');
     let count = 0;
@@ -141,7 +164,9 @@ function setupTiles(results) {
     }
 }
 
-// Add data to tiles and return HTML
+/**
+* Add data to tiles and return HTML
+*/
 function gridItemDinoHTML(result, randomNumber) {
     let fact = ""
     if (randomNumber == 0) {
@@ -171,15 +196,21 @@ function gridItemHumanHTML(result) {
     return html;
 }
 
-// Remove form from screen
+/**
+* Remove form from screen
+*/
 function removeForm() {
     const form = document.getElementById('dino-compare');
     form.style.display = "none";
 }
 
-// On button click, prepare and display infographic
+/**
+* On button click, prepare and display infographic
+*/
 document.getElementById('btn').addEventListener('click', function() {
-    // Use IIFE to get human data from form
+    /**
+    * Use IIFE to get human data from form
+    */
     let humanData = (function() {
         human.img = "human.png"
         human.species = document.getElementById('name').value;
@@ -188,11 +219,17 @@ document.getElementById('btn').addEventListener('click', function() {
         human.weight = document.getElementById('weight').value;
         human.diet = document.getElementById('diet').value;
     })();
-    // Get human data and store in object
+    /**
+    * Get human data and store in object
+    */
     humanData;
-    // Remove the form from the UI
+    /**
+    * Remove the form from the UI
+    */
     removeForm();
-    // Gather all data in single array
+    /**
+    * Gather all data in single array
+    */
     const results = [
         triceratops,
         tyrannosausRex,
@@ -204,17 +241,28 @@ document.getElementById('btn').addEventListener('click', function() {
         pteranodon,
         pigeon
     ]
-    // Compare method nr 1
+    /**
+    * Compare method nr 1
+    */
     checkWeight(results);
-    // Compare method nr 2
+    /**
+    * Compare method nr 2
+    */
     checkHeight(results);
-    // Compare method nr 3
+    /**
+    * Compare method nr 3
+    */
     checkDiet(results);
-    // Create the grid with the results
+    /**
+    * Create the grid with the results
+    */
     setupTiles(results);
 });
 
-// Create dino objects
+/**
+* Create dino objects
+*/
+
 let triceratops = new Dino(dinos.Dinos[0].species, dinos.Dinos[0].weight, dinos.Dinos[0].height, dinos.Dinos[0].diet, dinos.Dinos[0].where, dinos.Dinos[0].when, dinos.Dinos[0].fact0, dinos.Dinos[0].img);
 let tyrannosausRex = new Dino(dinos.Dinos[1].species, dinos.Dinos[1].weight, dinos.Dinos[1].height, dinos.Dinos[1].diet, dinos.Dinos[1].where, dinos.Dinos[1].when, dinos.Dinos[1].fact0, dinos.Dinos[1].img);
 let anklyosaurus = new Dino(dinos.Dinos[2].species, dinos.Dinos[2].weight, dinos.Dinos[2].height, dinos.Dinos[2].diet, dinos.Dinos[2].where, dinos.Dinos[2].when, dinos.Dinos[2].fact0, dinos.Dinos[2].img);
