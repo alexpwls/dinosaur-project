@@ -147,6 +147,38 @@ function checkDiet(results) {
 }
 
 /**
+* Add data to tiles and return HTML
+*/
+function gridItemDinoHTML(result, randomNumber) {
+    let fact = ""
+    if (randomNumber == 0) {
+        fact = result.fact0
+    } else if (randomNumber == 1) {
+        fact = result.fact1
+    } else if (randomNumber == 2) {
+        fact = result.fact2
+    } else if (result.species == "Pigeon") {
+        fact = "All birds are living dinosaurs."
+    } else {
+        fact = result.fact3
+    }
+    let html = `<div class="grid-item">
+        <h3>${result.species}</h3>
+        <p>${fact}</p>
+        <img src="images/${result.img}">
+        </div>`;
+    return html;
+}
+
+function gridItemHumanHTML(result) {
+    let html = `<div class="grid-item">
+        <h3>${result.species}</h3>
+        <img src="images/${result.img}">
+        </div>`;
+    return html;
+}
+
+/**
 * Generate Tiles for each Dino in Array and insert in DOM
 */
 function setupTiles(results) {
@@ -164,37 +196,6 @@ function setupTiles(results) {
     }
 }
 
-/**
-* Add data to tiles and return HTML
-*/
-function gridItemDinoHTML(result, randomNumber) {
-    let fact = ""
-    if (randomNumber == 0) {
-        fact = result.fact0
-    } else if (randomNumber == 1) {
-        fact = result.fact1
-    } else if (randomNumber == 2) {
-        fact = result.fact2
-    } else if (result.species == "Pigeon") {
-        fact = "All birds are living dinosaurs."
-    } else {
-        fact = result.fact3
-    }
-    let html = `<div class="grid-item">
-                        <h3>${result.species}</h3>
-                        <p>${fact}</p>
-                        <img src="images/${result.img}">
-                    </div>`;
-    return html;
-}
-
-function gridItemHumanHTML(result) {
-    let html = `<div class="grid-item">
-                        <h3>${result.species}</h3>
-                        <img src="images/${result.img}">
-                    </div>`;
-    return html;
-}
 
 /**
 * Remove form from screen
