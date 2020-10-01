@@ -1,6 +1,3 @@
-/**
-* Creation of dino objects
-*/
 const dinos = {
     "Dinos": [{
         "species": "Triceratops",
@@ -101,7 +98,7 @@ function Dino(species, weight, height, diet, where, when, fact0, img) {
 }
 
 /**
-* Create Dino Compare Method 1: check if weight is different
+* @description Create Dino Compare Method 1: check if weight is different
 */
 function checkWeight(results, humanObject) {
     for (result of results) {
@@ -114,7 +111,7 @@ function checkWeight(results, humanObject) {
 }
 
 /**
-* Create Dino Compare Method 2: check if height is different
+* @description Create Dino Compare Method 2: check if height is different
 */
 function checkHeight(results, humanObject) {
     for (result of results) {
@@ -128,7 +125,7 @@ function checkHeight(results, humanObject) {
 }
 
 /**
-* Create Dino Compare Method 3: check if Diet is similar
+* @description Create Dino Compare Method 3: check if Diet is similar
 */
 function checkDiet(results, humanObject) {
     for (result of results) {
@@ -141,7 +138,7 @@ function checkDiet(results, humanObject) {
 }
 
 /**
-* Add data to tiles and return HTML
+* @description Add data to tiles and return HTML
 */
 function gridItemDinoHTML(result, randomNumber) {
     let fact = ""
@@ -173,7 +170,7 @@ function gridItemHumanHTML(result) {
 }
 
 /**
-* Generate Tiles for each Dino in Array and insert in DOM
+* @description Generate Tiles for each Dino and Human in results array and inserts in DOM
 */
 function setupTiles(results) {
     const grid = document.getElementById("grid");
@@ -192,7 +189,7 @@ function setupTiles(results) {
 
 
 /**
-* Remove form from screen
+* @description Remove form from screen
 */
 function removeForm() {
     const form = document.getElementById("dino-compare");
@@ -204,40 +201,28 @@ function removeForm() {
 */
 document.getElementById("btn").addEventListener("click", function() {
     /**
-    * Use IIFE to get human data from form
+    * @description Use IIFE to get human data from form
     */
     let humanObject = {};
     (function(human) {
             human.img = "human.png"
-            human.species = document.getElementById('name').value;
-            human.feet = document.getElementById('feet').value;
-            human.inches = document.getElementById('inches').value;
-            human.weight = document.getElementById('weight').value;
-            human.diet = document.getElementById('diet').value;
+            human.species = document.getElementById("name").value;
+            human.feet = document.getElementById("feet").value;
+            human.inches = document.getElementById("inches").value;
+            human.weight = document.getElementById("weight").value;
+            human.diet = document.getElementById("diet").value;
     })(humanObject);
-
-    /**
-    * Remove the form from the UI
-    */
     removeForm();
     /**
-    * Gather all data in single array
+    * @description Gather all dino and human data in single array
     */
-    const results = dinos.Dinos.slice(0,4).concat([humanObject]).concat(dinos.Dinos.slice(4,8))
+    let results = dinos.Dinos.map(dino => new Dino(dino.species, dino.weight, dino.height, dino.diet, dino.where, dino.when, dino.fact0, dino.img));
+    results.splice(4, 0, humanObject);
     /**
-    * Compare method nr 1
+    * @description Checks for comparisons between human and dino and creates additional facts about the dinos
     */
     checkWeight(results, humanObject);
-    /**
-    * Compare method nr 2
-    */
     checkHeight(results, humanObject);
-    /**
-    * Compare method nr 3
-    */
     checkDiet(results, humanObject);
-    /**
-    * Create the grid with the results
-    */
     setupTiles(results);
 });
